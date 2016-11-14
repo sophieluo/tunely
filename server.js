@@ -27,6 +27,8 @@ app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get('/api', controllers.api.index);
+app.get('/api/albums', controllers.albums.index);
 
 /*
  * JSON API Endpoints
