@@ -17,12 +17,29 @@ $(document).ready(function() {
         url: '/api/albums',
         type: 'json',
         success: handleGetAlbumSuccess,
-        error: handleGetAlbumSuccess
+        error: handleGetAlbumError
     })
 
 
+    $('#addAlbumForm').on('submit', function(e) {
+      e.preventDefault();
+      console.log('new album serialized', $(this).serialize())
+        $.ajax({
+            method: 'POST',
+            url: '/api/albums',
+            data: $(this).serialize(),
+            type: 'json',
+            success: handleCreateAlbumSuccess,
+            error: handleCreateAlbumError
+        });
+        });
 
-});
+
+
+
+
+
+}); //end of document ready
 
 function handleGetAlbumSuccess(data) {
     var receivedAlbum = data.albums;
@@ -43,5 +60,13 @@ function renderAlbum(e) {
 };
 
 function handleGetAlbumError(a, b, c) {
+    console.log("Error!")
+}
+
+function handleCreateAlbumSuccess (data) {
+  console.log(data)
+};
+
+function handleCreateAlbumError(a, b, c) {
     console.log("Error!")
 }
