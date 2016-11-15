@@ -20,26 +20,26 @@ $(document).ready(function() {
         error: handleGetAlbumSuccess
     })
 
-    // Handlebars templating
-
 
 
 });
 
 function handleGetAlbumSuccess(data) {
     var receivedAlbum = data.albums;
+    console.log(data);
     receivedAlbum.forEach(function(e) {
         renderAlbum(e);
     });
 
-    function renderAlbum(e) {
-        var source = $('#albums-template').html();
-        var template = Handlebars.compile(source);
-        var albumsHtml = template({
-            album: e
-        });
-        $('#albums').prepend(albumsHtml);
-    };
+};
+
+function renderAlbum(e) {
+  var source = $('#albums-template').html();
+  var template = Handlebars.compile(source);
+  var albumsHtml = template({
+    album: e
+  });
+  $('#albums').prepend(albumsHtml);
 };
 
 function handleGetAlbumError(a, b, c) {
