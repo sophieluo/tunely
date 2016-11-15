@@ -13,8 +13,15 @@ function index(req, res) {
   })
 }
 
+//POST /api/albums
 function create(req, res) {
-  // FILL ME IN !
+console.log(req.body);
+db.Album.create(req.body, function(err, album) {
+  if (err) {console.log('error this is going wrong', err);}
+  //console.log(album);
+  //res.json(ablum);
+})
+
 }
 
 function show(req, res) {
